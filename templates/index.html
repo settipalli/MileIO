@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <img src="{{ url_for('static', filename='img/favicons/favicon.ico') }}" alt="MileIO Icon">
+    </div>
+
+    <footer>
+        <div class="container footer">
+            <p>© 2016 Settipalli, Inc.</p>
+        </div>
+    </footer>
+</div>
+
+
+{% endblock %}

@@ -57,3 +57,11 @@ The application's HTML files are stored in this folder.
 8. Set the value of the `MODE` config (environment) variable as 'production' (without quotes) using the command: `heroku config:set MODE=production` and verify that the config variables are set appropriately using the command: `heroku config`
 9. Push to heroku git repository: `git push heroku master`
 10. Verify the deployment: `heroku open`
+
+# Tools and references utilized
+
+1. Generate favicons: https://realfavicongenerator.net
+
+2. Terms and conditions reference: https://topnonprofits.com/terms-of-service/, available under the [Creative Commons Sharealike](http://creativecommons.org/licenses/by-sa/3.0/) license.
+
+3. Privacy Policy reference: https://topnonprofits.com/privacy-policy/, available under the [Creative Commons Sharealike](http://creativecommons.org/licenses/by-sa/3.0/) license.

@@ -1,25 +1,32 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-        <img src="{{ url_for('static', filename='img/favicons/favicon.ico') }}" alt="MileIO Icon">
-    </div>
-
-    <footer>
-        <div class="container footer">
-            <p>© 2016 Settipalli, Inc.</p>
+    <div class="container-fluid">
+        <div class="row logo-bottom-buffer">
+            <div class="col-md12">
+                <img class="img-responsive center-block" src="{{ url_for('static', filename='img/favicon.svg') }}"
+                     height="300"
+                     width="300" alt="MileIO">
+            </div>
         </div>
-    </footer>
-</div>
-
-
+        <div class="row clearfix">
+            <div class="col-md-6">
+                <button class="btn btn-default pull-right">Sign in with Google</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-default">Sign in with Facebook</button>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-md-8 col-md-push-2">
+                <h2 class="centered bottom-border">Mileage Tracking Made Simple</h2>
+            </div>
+            <div class="col-md-12">
+                <p class="centered">
+                    Whether you would like to log your miles for tax deduction or as a personal hobby, MileIO is one of
+                    the simplest milage tracking applications available out there.
+                </p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

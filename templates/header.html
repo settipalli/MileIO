@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container navbar-top-border">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar-top"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img id="navbar-header-brand-img" src="{{ url_for('static', filename='img/favicon.svg') }}" height="24" width="24" alt="MileIO">
+                MileIO
+            </a>
+        </div>
+
+        <div id="navbar-top"
+             class="navbar-collapse collapse"
+             aria-expanded="false">
+            <ul class="nav navbar-nav">
+                <li ><a href="/">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

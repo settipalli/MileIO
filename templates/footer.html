@@ -1,0 +1,32 @@
+<nav class="navbar-bottom navbar-default navbar-fixed-bottom">
+    <div class="container navbar-bottom-border">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar-bottom"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/favicon.svg') }}" height="24" width="24" alt="MileIO" >
+            </a>
+        </div>
+
+        <div id="navbar-bottom"
+             class="navbar-collapse collapse"
+             aria-expanded="false">
+            <ul class="nav navbar-nav">
+                <li><a href="/terms">Terms</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>© 2017 by Santhoshkumar Settipalli. All rights reserved.</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

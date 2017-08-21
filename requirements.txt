@@ -17,6 +17,7 @@ Flask-Security==3.0.0
 Flask-Social==1.6.2
 Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
+foursquare==1!2016.9.12
 future==0.16.0
 google-api-python-client==1.6.2
 gunicorn==19.7.1

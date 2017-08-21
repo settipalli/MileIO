@@ -4,7 +4,7 @@ from flask_social import Social
 from flask_social.datastore import SQLAlchemyConnectionDatastore
 from flask_mail import Mail, Message
 from flask_security import Security, SQLAlchemyUserDatastore, login_required
-from models import db, User, Role
+from models import db, User, Role, Connection
 
 # helper method
 get_from_env = lambda key: env[key] if key in env else ''
@@ -33,12 +33,16 @@ app.config['SOCIAL_FOURSQUARE'] = {
     'consumer_secret': get_from_env('FS_CONSUMER_SECRET')
 }
 
-
 # config values for flask-security
 app.config['SECURITY_PASSWORD_HASH'] = get_from_env('SECURITY_PASSWORD_HASH')
 app.config['SECURITY_PASSWORD_SALT'] = get_from_env('SECURITY_PASSWORD_SALT')
 app.config['SECURITY_RECOVERABLE'] = True
 
+# redirect to the profile page instead of the default flask-security redirect to root
+app.config['SECURITY_POST_LOGIN'] = '/profile'
+
+# required for security.authenticate in the signin form to work
+app.config['SECURITY_REGISTERABLE'] = True
 
 # configure mail
 
@@ -51,7 +55,6 @@ app.config['MAIL_PORT'] = get_from_env('MAIL_PORT')
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
-
 
 # database configuration
 
@@ -66,12 +69,14 @@ db.init_app(app)
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
 
+connection_datastore = SQLAlchemyConnectionDatastore(db, Connection)
+social = Social(app, connection_datastore)
+
 # get a handle for the logger
 log = app.logger
 
 
 @app.route('/')
-@login_required
 def index():
     log.debug('rendering index.html')
     return render_template('index.html')
@@ -93,6 +98,33 @@ def privacy():
 def about():
     log.debug('rendering about.html')
     return render_template('about.html')
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template(
+        'profile.html',
+        content='Profile Page',
+        twitter_conn=social.twitter.get_connection(),
+        facebook_conn=social.facebook.get_connection(),
+        foursquare_conn=social.foursquare.get_connection(),
+        google_conn=social.google.get_connection()
+    )
+
+
+@app.route('/signin')
+@login_required
+def signin():
+    return render_template(
+        'login.html',
+        content='Login Page',
+        twitter_conn=social.twitter.get_connection(),
+        facebook_conn=social.facebook.get_connection(),
+        foursquare_conn=social.foursquare.get_connection(),
+        google_conn=social.google.get_connection()
+    )
+
 
 # helper routines
 

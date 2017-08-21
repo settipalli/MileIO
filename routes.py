@@ -1,80 +1,24 @@
 from os import environ as env
 from flask import Flask, render_template, request, session, redirect, url_for, abort
-from flask_social import Social
-from flask_social.datastore import SQLAlchemyConnectionDatastore
 from flask_mail import Mail, Message
 from flask_security import Security, SQLAlchemyUserDatastore, login_required
-from models import db, User, Role, Connection
+from models import db, User, Role
+from config import config
 
 # helper method
 get_from_env = lambda key: env[key] if key in env else ''
 
 app = Flask(__name__)
-app.secret_key = get_from_env('APP_SECRET_KEY')
-
-# configure social platforms access keys
-app.config['SOCIAL_GOOGLE'] = {
-    'consumer_key': get_from_env('GOOGLE_CONSUMER_KEY'),
-    'consumer_secret': get_from_env('GOOGLE_CONSUMER_SECRET')
-}
-
-app.config['SOCIAL_TWITTER'] = {
-    'consumer_key': get_from_env('TWITTER_CONSUMER_KEY'),
-    'consumer_secret': get_from_env('TWITTER_CONSUMER_SECRET')
-}
-
-app.config['SOCIAL_FACEBOOK'] = {
-    'consumer_key': get_from_env('FB_CONSUMER_KEY'),
-    'consumer_secret': get_from_env('FB_CONSUMER_SECRET')
-}
-
-app.config['SOCIAL_FOURSQUARE'] = {
-    'consumer_key': get_from_env('FS_CONSUMER_KEY'),
-    'consumer_secret': get_from_env('FS_CONSUMER_SECRET')
-}
-
-# config values for flask-security
-app.config['SECURITY_PASSWORD_HASH'] = get_from_env('SECURITY_PASSWORD_HASH')
-app.config['SECURITY_PASSWORD_SALT'] = get_from_env('SECURITY_PASSWORD_SALT')
-app.config['SECURITY_RECOVERABLE'] = True
-
-# redirect to the profile page instead of the default flask-security redirect to root
-app.config['SECURITY_POST_LOGIN'] = '/profile'
-
-# required for security.authenticate in the signin form to work
-app.config['SECURITY_REGISTERABLE'] = True
-
-# configure mail
-
-# flask-security uses flask-mail to send emails
-app.config['SECURITY_EMAIL_SENDER'] = get_from_env('SECURITY_EMAIL_SENDER')
-app.config['MAIL_USERNAME'] = get_from_env('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = get_from_env('MAIL_PASSWORD')
-app.config['MAIL_SERVER'] = get_from_env('MAIL_SERVER')
-app.config['MAIL_PORT'] = get_from_env('MAIL_PORT')
-app.config['MAIL_USE_SSL'] = True
-
+app.config.from_object(config['dev'])
 mail = Mail(app)
-
-# database configuration
-
-# we do not use the SQLAlchemy event system
-# turning it off saves some resources
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = get_from_env('DATABASE_URL')
-
 db.init_app(app)
 
 # setup flask-security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
 
-connection_datastore = SQLAlchemyConnectionDatastore(db, Connection)
-social = Social(app, connection_datastore)
-
 # get a handle for the logger
 log = app.logger
-
 
 @app.route('/')
 def index():

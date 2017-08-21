@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_security import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin, login_required
+from flask_security import UserMixin, RoleMixin
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -17,23 +18,14 @@ class Role(db.Model, RoleMixin):
 
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), unique=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    name = db.Column(db.String(255), nullable=True)
+    avatar = db.Column(db.String(255))
     password = db.Column(db.String(255))
-    active = db.Column(db.Boolean())
+    active = db.Column(db.Boolean, default=False)
+    tokens = db.Column(db.Text)
     confirmed_at = db.Column(db.DateTime())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
-
-
-class Connection(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    provider_id = db.Column(db.String(255))
-    provider_user_id = db.Column(db.String(255))
-    access_token = db.Column(db.String(255))
-    secret = db.Column(db.String(255))
-    display_name = db.Column(db.String(255))
-    profile_url = db.Column(db.String(512))
-    image_url = db.Column(db.String(512))
-    rank = db.Column(db.Integer)
-    full_name = db.Column(db.String(255))

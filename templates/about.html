@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>The story behind the creation of MileIO</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    The author of the MileIO project purchased his first car in the year 2009. Being a data centric
+                    person, he started to track every trip, fuel refil and maintenance expenses of his car by jotting
+                    them down in a dairy.
+                <p>
+                    Eventually, he realized that it was tiresome and time consuming to track and draw conclusions from
+                    analyzing hand written details of the trips and vehicle expenses. This was the inspiration behind
+                    the thought of using software to solve the real world problem at hand.
+                </p>
+                <p>
+                    Fast forward, the year is 2015. The author purchased his second car.
+                    This time around, he choose to use an app installed on his phone to track trips. The app he chose to
+                    use was MileIQ: <a href="https://www.mileiq.com/">https://www.mileiq.com/</a>. The interface of
+                    the app is magnificant and it allowed automatic tracking of trips.
+                </p>
+                <p>
+                    Though tracking trips automatically without any manual input was a boon, the author soon realized
+                    the cost of using such features. The battery drain due to the persistent use of GPS was something
+                    that could not be ignored. The solution was to have his mobile device connected to the car charger
+                    as long as he is driving.
+                </p>
+                <p>
+                    The second problem was more of a pain in the neck and hard to resolve and eventually led the author
+                    to switch to a different miles tracking technique. This was the problem of false positives.
+                    Thought the app was exceptionally designed with a well thought out user interface, the
+                    automatic tracking was not accurate. If you had to stop for a considerable amount of time waiting
+                    for a traffic signal to turn green or drive at a snail pace due to congested roads, the app would
+                    consider it as a termination point for the on-going trip and terminate the trip. When you come
+                    across multiple such incidents on a single trip, the app would have either sub-divided the trip into
+                    multiple individual trips or would have missed tracking few miles in-between. This implied that the
+                    author had to consistently review the output of the app and update the trips as appropriate.
+                </p>
+                <p>
+                    The problem described above caused the author to switch over to using Google Sheets to track not
+                    just the trip data but also fuel and maintenance expenses. There was no automatic tracking which
+                    meant that every trip and vehicle expense had to be manual added to a workbook (sheet) using the
+                    Google Sheets app. This was not a problem since the author had to anyway review and update every
+                    trip for accuracy when using app(s) that tracked trips automatically. Moreover, the app that the
+                    author was using did not support tracking fuel and other expenses.
+                </p>
+                <p>
+                    The use of Google Sheets for tracking miles and vehicle expences worked beautifully for several
+                    months until the author sold his car.
+                    This experience showcased a huge opportunity to the author that eventually led to creation of MileIO
+                    that allows a user to track not just trips but also fuel and other maintenance expenses for
+                    multiple automobiles.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>About MileIO</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    MileIO is a simplified mileage tracking and fleet management application. It cuts the hassle of all
+                    the paper work involved while tracking your miles and vehicle expenses manually.
+                    Though the concept of tracking mileage and fleet management is old and generic in nature, it would
+                    be unfair to not acknowledge the existing applications in the market that influenced the design of
+                    MileIO. Few of those are listed below:
+                <ol>
+                    <li>TripLog: <a href="https://triplogmileage.com/">https://triplogmileage.com/</a></li>
+                    <li>MileIQ: <a href="https://www.mileiq.com/">https://www.mileiq.com/</a></li>
+                    <li>Mileage Expense Log (iOS): <a
+                            href="http://www.chuchutrain.com/mileage-expense-log.html">
+                        http://www.chuchutrain.com/mileage-expense-log.html
+                    </a>
+                    </li>
+                </ol>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Open Source</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    MileIO application is built utlizing the Python Flask microframework. It uses Google Sheets as a
+                    backend data store in a hope that the user always has access to his data stored in his Google Drive
+                    account regardless of whether he chooses to use the MileIO interface or not.
+                    The source code is licensed under the
+                    <a href="https://raw.githubusercontent.com/settipalli/MileIO/master/LICENSE.txt">MIT License</a>
+                     and is available at <a href="https://github.com/settipalli/mileio" target="_blank">
+                    https://github.com/settipalli/mileio</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Features</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li>Log every drive.</li>
+                    <li>Log fuel and maintenance expenses for your vehicle.</li>
+                    <li>Manage more than one automobile.</li>
+                    <li>Categorize your drives as personal or business.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

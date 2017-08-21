@@ -22,6 +22,7 @@
              class="navbar-collapse collapse"
              aria-expanded="false">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('about') }}"><span class="navbar-link">About</span></a></li>
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for_security('logout') }}"><span class="navbar-link">Sign out</span></a></li>
                 {% endif %}

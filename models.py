@@ -6,12 +6,13 @@ db = SQLAlchemy()
 
 # define modes
 roles_users = db.Table('roles_users',
-                       db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
-                       db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
+                       db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),
+                       db.Column('role_id', db.Integer(), db.ForeignKey('roles.id'))
                        )
 
 
 class Role(db.Model, RoleMixin):
+    __tablename__ = 'roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
@@ -28,4 +29,4 @@ class User(db.Model, UserMixin):
     tokens = db.Column(db.Text)
     confirmed_at = db.Column(db.DateTime())
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+    roles = db.relationship('Roles', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))

@@ -29,4 +29,4 @@ class User(db.Model, UserMixin):
     tokens = db.Column(db.Text)
     confirmed_at = db.Column(db.DateTime())
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    roles = db.relationship('Roles', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))

@@ -50,3 +50,5 @@ data.db
 # backup files
 backup/*
 
+# temporary ssl certs
+ssl.*
